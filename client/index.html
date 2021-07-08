@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Otomanopee+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Loop:ital@1&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    
+    <title>Fancy Todo's</title>
+  </head>
+  <body>    
+        <div class="alert alert-danger text-center" role="alert" id="error-report">
+        </div>
+        <div class="alert alert-success text-center" role="alert" id="success-report">
+        </div>
+
+        <!-- ALERT LOGO -->
+        <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+            <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+            </symbol>
+            <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+            </symbol>
+            <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+            </symbol>
+        </svg>
+
+        <!-- LOGIN PAGE -->
+        <div id="login-page" class="container-fluid">
+            <div class="container shadow">
+                <div class="row mt-5">
+                    <div class="col-10 offset-1 my-3" style="text-align: center;">
+                        <h1 style="font-family: 'Otomanopee One', sans-serif;"> Wellcome to Fancy Todos</h1>
+                        <h2 style="font-family: 'Zen Loop', cursive;"> Let's list your task </h2>
+                    </div>
+                </div>
+                <div class="row" style="height: 450px;">
+                    <div class="col-5 offset-1">
+                        <div class="card my-5">
+                            <img src="./assets/cover.svg" class="card-img-top" alt="...">
+                        </div>
+                    </div>
+                    <div class="col-5">
+                        <div class="card2 card border-0 px-4 py-5">
+                            <div class="row mb-4 px-3">
+                                <h6 class="mb-0 mr-4 mt-2 text-center" style="font-family: 'Otomanopee One', sans-serif;">Login with your account</h6>
+                            </div>
+                            <form id="login-form" onsubmit="login(event)">
+                                <div class="row px-3"> 
+                                    <label class="mb-1">
+                                        <h6 class="mb-0 text-sm">Email Address</h6>
+                                    </label> 
+                                    <input id="login-email" class="mb-4" type="text" name="email" placeholder="Enter a valid email address"> 
+                                </div>
+                                <div class="row px-3"> 
+                                    <label class="mb-1">
+                                        <h6 class="mb-0 text-sm">Password</h6>
+                                    </label> 
+                                    <input id="login-password" type="password" name="password" placeholder="Enter password"> 
+                                </div>
+                                <div class="row mb-3 px-3"> 
+                                    <button type="submit" class="btn btn-warning mt-2 text-center">Login</button> 
+                                </div>
+                                <div class="row mb-4 px-3"> 
+                                    <small class="font-weight-bold">Don't have an account? <a href="#" onclick="toRegisterPage(event)" class="text-danger ">Register</a></small> 
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- REGISTER PAGE -->
+        <div id="register-page" class="container-fluid">
+            <div class="container shadow">
+                <div class="row mt-5">
+                    <div class="col-10 offset-1 my-3" style="text-align: center;">
+                    <h1 style="font-family: 'Otomanopee One', sans-serif;"> Wellcome to Fancy Todos</h1>
+                    <h2 style="font-family: 'Zen Loop', cursive;"> Let's list your task </h2>
+                    </div>
+                </div>
+                <div class="row" style="height: 450px;">
+                    <div class="col-5 offset-1">
+                    <div class="card my-5">
+                        <img src="./assets/cover.svg" class="card-img-top" alt="...">
+                    </div>
+                    </div>
+                    <div class="col-5">
+                    <div class="card2 card border-0 px-4 py-5">
+                        <div class="row mb-4 px-3">
+                            <h6 class="mb-0 mr-4 mt-2 text-center" style="font-family: 'Otomanopee One', sans-serif;">Register New Acount</h6>
+                        </div>
+                        <form id="register-form" onsubmit="register(event)">
+                            <div class="row px-3"> 
+                                <label class="mb-1">
+                                    <h6 class="mb-0 text-sm">Email Address</h6>
+                                </label> 
+                                <input id="register-email" class="mb-4" type="text" name="email" placeholder="Enter a valid email address"> 
+                            </div>
+                            <div class="row px-3"> 
+                                <label class="mb-1">
+                                    <h6 class="mb-0 text-sm">Password</h6>
+                                </label> 
+                                <input id="register-password" type="password" name="password" placeholder="Enter password"> 
+                            </div>
+                            <div class="row mb-3 px-3"> 
+                                <button type="submit" class="btn btn-warning mt-2 text-center">Register</button> 
+                            </div>
+                            <div class="row mb-4 px-3"> 
+                                <small class="font-weight-bold">Have an account? <a href="#" class="text-danger" onclick="toLoginPage(event)">Login</a></small> 
+                            </div>
+                        </form>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- HOME PAGE -->
+        <div id="home-page" class="container-fluid">
+            <div class="container shadow" style="background-image: url(./assets/cover-background.svg); background-size: cover;">
+                <div class="row mt-5">
+                    <div id="fetch-email" class="col-10 offset-1 my-3" style="text-align: center;">
+                    
+                    </div>
+                    <button onclick="logout()" type="submit" class="btn btn-primary mt-2 text-center" style="width: 8%; height: 3%;">Logout</button>
+                </div>
+                <!-- ALERT NOTIFICATION -->    
+                <!-- <div class="row">
+                    <div class="col-6 offset-3">
+                        <div class="alert alert-success text-center" role="alert" id="error-report">
+                        </div>
+                    </div>
+                </div> -->
+                <div class="row" style="height: 450px;">
+                    <!-- FETCH TODOS -->
+                    <div class="col-8">
+                        <div class="card my-5">
+                            <table id="fetch-todo" class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Title</th>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Due Date</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- ADD TODOS -->
+                    <div class="col-4">
+                    <div class="card2 card border-0 px-4">
+                        <div class="row mb-4 px-3">
+                            <h6 class="mb-0 mr-4 mt-2 text-center" style="font-family: 'Otomanopee One', sans-serif;">Add your Todos</h6>
+                        </div>
+                        <form onsubmit="addTodo(event)">
+                            <div class="row px-3"> 
+                                <label class="mb-1">
+                                    <h6 class="mb-0 text-sm">Title</h6>
+                                </label> 
+                                <input id="add-title" class="mb-4" type="text" placeholder="Enter your title task"> 
+                            </div>
+                            <div class="row px-3"> 
+                                <label class="mb-1">
+                                    <h6 class="mb-0 text-sm">Description</h6>
+                                </label> 
+                                <textarea id="add-description" class="mb-4" placeholder="Enter Description"></textarea> 
+                            </div>
+                            <div class="row px-3"> 
+                                <label class="mb-1">
+                                    <h6 class="mb-0 text-sm">Due Date</h6>
+                                </label> 
+                                <input id="add-due_date" class="mb-4" type="date"> 
+                            </div>
+                            <div class="row mb-3 px-3"> 
+                                <button type="submit" class="btn btn-warning text-center mt-2" style="font-family: 'Otomanopee One', sans-serif;">ADD</button> 
+                            </div>
+                        </form>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- EDIT PAGE -->
+        <div id="edit-page" class="container-fluid">
+            <div class="container shadow">
+                <div class="row mt-5">
+                    <div class="col-10 offset-1 my-3" style="text-align: center;">
+                    <h3 style="font-family: 'Otomanopee One', sans-serif;">Update your todos</h3>
+                    </div>
+                </div>
+                <div class="row" style="height: 450px;">
+                    <div class="col-5 offset-1">
+                    <div class="card my-5">
+                        <img src="./assets/edit.svg" class="card-img-top" alt="...">
+                    </div>
+                    </div>
+                    <div class="col-5">
+                    <div class="card2 card border-0 px-4 py-5">
+                        <div class="row mb-4 px-3">
+                            <h6 class="mb-0 mr-4 mt-2 text-center" style="font-family: 'Otomanopee One', sans-serif;">Edit Your Task</h6>
+                        </div>
+                        <form onsubmit="editTodo(event)">
+                            <div class="row px-3"> 
+                                <label class="mb-1">
+                                    <h6 class="mb-0 text-sm">Title</h6>
+                                </label> 
+                                <input id="edit-title" class="mb-4" type="text" placeholder="Enter your title task"> 
+                            </div>
+                            <div class="row px-3"> 
+                                <label class="mb-1">
+                                    <h6 class="mb-0 text-sm">Description</h6>
+                                </label> 
+                                <textarea id="edit-description" class="mb-4" placeholder="Enter Description"></textarea> 
+                            </div>
+                            <div class="row px-3"> 
+                                <label class="mb-1">
+                                    <h6 class="mb-0 text-sm">Due Date</h6>
+                                </label> 
+                                <input id="edit-due_date" class="mb-4" type="date"> 
+                            </div>
+                            <div class="row mb-3 px-3"> 
+                                <div class="col-6">
+                                    <button type="submit" class="btn btn-warning text-center mt-2" style="font-family: 'Otomanopee One', sans-serif; width: 100%;">Submit</button> 
+                                </div>
+                                <div class="col-6">
+                                    <button type="submit" onclick="toHomePage(event)" class="btn btn-secondary text-center mt-2" style="font-family: 'Otomanopee One', sans-serif; width: 100%">Cancel</button> 
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!-- JQUERY CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+    <!-- main.js -->
+    <script src="main.js"></script>
+  </body>
+</html>
