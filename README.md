@@ -66,6 +66,10 @@ Buatlah Fancy Todos App dengan require sebagai berikut :
          - karena TODO tidak ditemukan maka, res.status 404, dan pesan validation error
         - Jika req gagal karena kesalaha server maka res.status 500 dan res.body pesan validation error
 
+- Release 5 :
+    - Buatlah error handling untuk semua error
+    - Untuk register akun baru, data password yang dibalikkan ke database sudah harus di `HASH` 
+
 # Getting Started
 Hal yang perlu dilakukan untuk memulai Aplikasi Web :
 
